@@ -1,5 +1,12 @@
 import Channel from "./Channel";
 
+/**
+ * Groups
+ *
+ * Groups are sets of channels
+ * The channels are multiplied together
+ */
+
 class Group {
   #channels;
 
@@ -23,7 +30,6 @@ class Group {
   getGroupEquation = () => {
     this.#channels
       .map((channel, index) => {
-        console.log(index);
         if (index) {
           channel.interaction + channel.equations.join("+");
         } else return "1" + channel.interaction + channel.equations.join("+");

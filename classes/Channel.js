@@ -1,3 +1,12 @@
+/**
+ * Channels
+ *
+ * Channels are a group of equations
+ * The equations are summed together to output a final value
+ * The equations are never subtracted
+ * Therefore, to subtract an equation, you should flip all positive operators to negative
+ */
+
 class Channel {
   constructor(id, equations, interaction) {
     // unique identifier
