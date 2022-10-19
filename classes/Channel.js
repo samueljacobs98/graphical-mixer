@@ -8,16 +8,27 @@
  */
 
 class Channel {
-  constructor(id, equations, interaction) {
+  #id;
+  #equations;
+  #interaction;
+
+  constructor(id, equations = [], interaction = "*") {
     // unique identifier
-    this.id = id;
+    this.#id = id;
     // array of Equations
-    this.equations = equations;
+    this.#equations = equations;
     // how the channel will interact with other channels
     // in a group
     // either "*" or "/"
-    this.interaction = Channel.#validateInteraction(interaction);
+    this.#interaction = Channel.#validateInteraction(interaction);
   }
+
+  /**
+   * Getters and Setters
+   */
+  getId = () => this.#id;
+  getEquations = () => [...this.#equations];
+  getInteraction = () => this.#interaction;
 
   static #validateInteraction = (interaction) => {
     const regexString = /^[*\/]$/gm;

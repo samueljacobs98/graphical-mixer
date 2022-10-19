@@ -8,7 +8,7 @@ describe("Equation tests", () => {
 
     validEquations.forEach((equation, index) => {
       const result = new Equation(equation);
-      expect(result.equation).toEqual(expectedResults[index]);
+      expect(result.getEquation()).toEqual(expectedResults[index]);
     });
   });
   it("throws an error", () => {

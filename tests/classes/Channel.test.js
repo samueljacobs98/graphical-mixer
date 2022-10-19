@@ -25,11 +25,11 @@ describe("Equation tests", () => {
 
     const result = new Channel(input.id, input.equations, input.interaction);
 
-    expect(result.id).toBe(input.id);
-    result.equations.forEach((equation, index) => {
+    expect(result.getId()).toBe(input.id);
+    result.getEquations().forEach((equation, index) => {
       expect(equation).toEqual(input.equations[index]);
     });
-    expect(result.interaction).toBe("*");
+    expect(result.getInteraction()).toBe("*");
   });
   it("throws an error", () => {
     const invalidInteractions = ["* ", "_7*", "!/2", 2, true, 0xffffff];

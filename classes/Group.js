@@ -1,4 +1,5 @@
 import Channel from "./Channel";
+import Equation from "./Equation";
 
 /**
  * Groups
@@ -27,14 +28,25 @@ class Group {
   /**
    * Getters and Setters
    */
+  getChannels = () => [...this.#channels];
+
   getGroupEquation = () => {
-    this.#channels
-      .map((channel, index) => {
-        if (index) {
-          channel.interaction + channel.equations.join("+");
-        } else return "1" + channel.interaction + channel.equations.join("+");
-      })
-      .join("");
+    return new Equation(
+      this.#channels
+        .map((channel, index) => {
+          const string =
+            channel.getInteraction() +
+            "(" +
+            channel
+              .getEquations()
+              .map((eq) => eq.getEquation())
+              .join("+") +
+            ")";
+
+          return index ? string : "1" + string;
+        })
+        .join("")
+    );
   };
 
   /**
