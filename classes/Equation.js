@@ -6,7 +6,7 @@ class Equation {
   }
 
   static #validateEquation = (input) => {
-    const regex = /^[0-9\*\/\+\-\^()xyt]*$/g;
+    const regex = /^[0-9\*\/\+\-\^()xt]*$/g;
     const equation = input.replace(/\s+/g, "");
     if (regex.test(equation)) return equation;
     else throw "Invalid Equation";
