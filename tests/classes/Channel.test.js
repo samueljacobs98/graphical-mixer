@@ -9,7 +9,7 @@ describe("Equation tests", () => {
       equations: [
         new Equation("x + 3"),
         new Equation("x^3"),
-        new Equation("t ^ y"),
+        new Equation("t ^ x"),
       ],
       interaction: "*",
     };
@@ -18,13 +18,11 @@ describe("Equation tests", () => {
       equations: [
         new Equation("x + 3"),
         new Equation("x^3"),
-        new Equation("t ^ y"),
+        new Equation("t ^ x"),
       ],
       interaction: "*",
     };
-
     const result = new Channel(input.id, input.equations, input.interaction);
-
     expect(result.getId()).toBe(input.id);
     result.getEquations().forEach((equation, index) => {
       expect(equation).toEqual(input.equations[index]);
