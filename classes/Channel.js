@@ -7,6 +7,8 @@
  * Therefore, to subtract an equation, you should flip all positive operators to negative
  */
 
+import Store from "./Store";
+
 class Channel {
   #id;
   #equations;
@@ -21,6 +23,9 @@ class Channel {
     // in a group
     // either "*" or "/"
     this.#interaction = Channel.#validateInteraction(interaction);
+    // add the channel to the store
+    this.store = new Store();
+    this.store.addChannel(this);
   }
 
   /**

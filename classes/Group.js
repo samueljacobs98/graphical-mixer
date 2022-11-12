@@ -1,5 +1,6 @@
 import Channel from "./Channel";
 import Equation from "./Equation";
+import Store from "./Store";
 
 /**
  * Groups
@@ -13,6 +14,10 @@ class Group {
 
   constructor(channels = []) {
     this.#channels = Group.#validateChannels(channels);
+
+    // add the channel to the store
+    this.store = new Store();
+    this.store.addGroup(this);
   }
 
   /**
