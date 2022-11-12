@@ -35,17 +35,13 @@ class Store {
    * Other Methods
    */
   addChannel = (channel) => {
-    if (channel instanceof Channel) {
-      this.#channels.push(channel);
-      this.channelsCount++;
-    } else throw "Invalid channel provided";
+    if (channel instanceof Channel) this.#channels.push(channel);
+    else throw "Invalid channel provided";
   };
 
   addGroup = (group) => {
-    if (group instanceof Group) {
-      this.#groups.push(group);
-      this.groupsCount++;
-    } else throw "Invalid group provided";
+    if (group instanceof Group) this.#groups.push(group);
+    else throw "Invalid group provided";
   };
 
   setDimensions = (width, height) => {
