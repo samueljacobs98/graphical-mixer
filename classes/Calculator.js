@@ -15,12 +15,13 @@ class Calculator {
 
   // FIX
   static calculateRecursion = (eqString) => {
+    // BracketHandler.containsBrackets(eqString)
+    // BracketHandler.getBracketsIndex(eqString)
     if (BracketHandler.containsBrackets(eqString)) {
-      const bracketsIndex = BracketHandler.getBracketsIndex(eqString);
-      const eqSlice = eqString.slice(
-        bracketsIndex.openIndex + 1,
-        bracketsIndex.closeIndex
-      );
+      const { openIndex, closeIndex } =
+        BracketHandler.getBracketsIndex(eqString);
+      const eqSlice = eqString.slice(openIndex + 1, closeIndex);
+
       const result = calculateRecursion(eqSlice);
     } else {
       calculateWithoutBrackets(eqString);
@@ -32,7 +33,7 @@ class Calculator {
   };
 
   // WORKS
-  static #calculateWithoutBrackets = (equationArray, bidmasIndex = 0) => {
+  static #calculateResultArray = (equationArray, bidmasIndex = 0) => {
     if (bidmasIndex > Calculator.BIDMAS.length - 1 || equationArray.length <= 2)
       return equationArray;
 
@@ -58,8 +59,12 @@ class Calculator {
         : resultArray.splice(operatorIndex - 1, 3, result);
     }
 
+    // returns result in array as first value
+    // value is a string
+    // i.e. ["32"]
+
     return resultArray.length > 1
-      ? Calculator.#calculateWithoutBrackets(resultArray, bidmasIndex + 1)
+      ? Calculator.#calculateResultArray(resultArray, bidmasIndex + 1)
       : resultArray;
   };
 
