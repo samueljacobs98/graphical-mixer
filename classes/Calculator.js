@@ -1,6 +1,5 @@
 import ArrayHandler from "./ArrayHandler";
 import BracketHandler from "./BracketHandler";
-import Calculator from "./Calculator";
 
 class Calculator {
   static BIDMAS = ["^", "/", "*", "+", "-"];
@@ -104,6 +103,13 @@ class Calculator {
         throw "Invalid operation";
     }
   };
+
+  /**
+   *
+   * Classes for testing private method
+   */
+  static _testBasicOperation = (operator, term1, term2) =>
+    Calculator.#basicOperation(operator, term1, term2);
 }
 
 export default Calculator;
