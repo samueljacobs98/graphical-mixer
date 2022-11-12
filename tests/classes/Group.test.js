@@ -9,6 +9,7 @@ describe("Group tests", () => {
     expect(result).toBeInstanceOf(Group);
     expect(result.getChannels().length).toBe(0);
   });
+
   it("returns a new group with validated channels", () => {
     const channel = new Channel(
       "channel-1",
@@ -22,7 +23,8 @@ describe("Group tests", () => {
     expect(result.getChannels()[0]).toEqual(channel);
     expect(result.getGroupEquation().getEquation()).toEqual("1*(x+3+x^3+t^x)");
   });
-  it("can retrospectively add a channel", () => {
+
+  it("can retrospectively add a channel with a multiply operator", () => {
     const channel = new Channel(
       "channel-1",
       [new Equation("x + 3"), new Equation("x^3"), new Equation("t ^ x")],
@@ -38,6 +40,24 @@ describe("Group tests", () => {
     expect(group.getChannels()[0]).toEqual(channel);
     expect(group.getGroupEquation().getEquation()).toEqual("1*(x+3+x^3+t^x)");
   });
+
+  it("can retrospectively add a channel with a divide operator", () => {
+    const channel = new Channel(
+      "channel-1",
+      [new Equation("x + 3"), new Equation("x^3"), new Equation("t ^ x")],
+      "/"
+    );
+    const group = new Group();
+
+    expect(group.getChannels().length).toEqual(0);
+
+    group.addChannel(channel);
+
+    expect(group).toBeInstanceOf(Group);
+    expect(group.getChannels()[0]).toEqual(channel);
+    expect(group.getGroupEquation().getEquation()).toEqual("1/(x+3+x^3+t^x)");
+  });
+
   it("throws an error when channels are invalid", () => {
     const invalidInputs = [1, "invalid", 1.0, new Channel(), true];
 
