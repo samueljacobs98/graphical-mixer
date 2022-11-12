@@ -3,16 +3,12 @@ import Channel from "../../classes/Channel";
 import Group from "../../classes/Group";
 import Store from "../../classes/Store";
 
+const store = new Store();
+
 describe("Store tests", () => {
-  it("allows valid channel and valid Group to be added retrospectively", () => {
-    const store = new Store();
+  it("channels and groups are automatically added to store", () => {
     const validChannel = new Channel();
     const validGroup = new Group([validChannel]);
-
-    expect(store.getGroupsCount()).toEqual(0);
-
-    store.addChannel(validChannel);
-    store.addGroup(validGroup);
 
     expect(store.getChannels()[0]).toEqual(validChannel);
     expect(store.getChannelsCount()).toEqual(1);
@@ -20,7 +16,6 @@ describe("Store tests", () => {
     expect(store.getGroupsCount()).toEqual(1);
   });
   it("allows dimensions to be updated retrospectively", () => {
-    const store = new Store();
     const defaultLength = 2048;
     const expectedInitialSettings = {
       dimensions: [defaultLength, defaultLength],
@@ -45,11 +40,9 @@ describe("Store tests", () => {
 
     invalidInputs.forEach((invalidInput) => {
       expect(() => {
-        const store = new Store();
         store.addChannel(invalidInput);
       }).toThrow();
       expect(() => {
-        const store = new Store();
         store.addGroup(invalidInput);
       }).toThrow();
     });
